@@ -1,0 +1,14 @@
+resources:
+  - name: my_trigger
+    type: trigger
+    versionTemplate:
+      counter: 1
+      
+jobs:
+  - name: my_job
+    type: runSh
+    steps:
+      - IN: my_trigger
+      - TASK:
+          script:
+            - echo Trigger version number is $(shipctl get_resource_version_number my_trigger)
